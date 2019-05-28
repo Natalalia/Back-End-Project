@@ -4,9 +4,13 @@ import pymongo
 from pymongo import MongoClient
 from bson import json_util
 from bson.objectid import ObjectId
+
 client = pymongo.MongoClient(
     "mongodb+srv://alpha1:alpha1@cluster0-w2dum.mongodb.net/test?retryWrites=true")
 db = client.test
+
+
+
 db = client.games
 app = Flask(__name__)
 
@@ -58,6 +62,7 @@ class GetAndAddUsers(Resource):
 
 
 api.add_resource(GetAndAddUsers, '/users')
+
 api.add_resource(GetAndPostGames, '/games')
 api.add_resource(GetGamesList, '/gameslist')
 app.register_blueprint(api_bp)
