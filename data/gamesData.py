@@ -4,8 +4,6 @@ connection = pymongo.MongoClient()
 
 database = connection['data']
 
-collection = database['gameData']
-
 gameStructure = {    
     'title': 'game 1!',
     'levels': {
@@ -40,13 +38,8 @@ gameStructure = {
     }   
 }
 
-collection.insert_one(gameStructure)
+gameData = database['gameData']
+
+gameData.insert_one(gameStructure)
 
 
-collection2 = database['gamesList']
-
-games = {
-    'games': [{ 'name': 'game1', 'id': 'game1' }, { 'name': 'game2', 'id': 'game2' }]
-}
-
-collection2.insert_one(games)
