@@ -2,5 +2,5 @@ Flask
 Flask-RESTful
 mongoengine
 pymongo
-
+wsgi
 gunicorn
