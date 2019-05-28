@@ -1,1 +1,1 @@
-web: gunicorn flasAPI:app
+web: gunicorn $PORT flasAPI:app
