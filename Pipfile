@@ -14,7 +14,7 @@ pymongo = "*"
 gunicorn = "*"
 flask = "*"
 dnspython = "*"
-flask-u = "*"
+
 flask-cors = "*"
 
 [requires]

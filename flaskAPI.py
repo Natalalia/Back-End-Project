@@ -4,7 +4,7 @@ import pymongo
 from pymongo import MongoClient
 from bson import json_util
 from bson.objectid import ObjectId
-from flask_cors import CORS
+@cross_origin()
 client = pymongo.MongoClient(
     "mongodb+srv://alpha1:alpha1@cluster0-w2dum.mongodb.net/test?retryWrites=true")
 db = client.test
@@ -13,7 +13,7 @@ db = client.test
 
 db = client.games
 app = Flask(__name__)
-CORS(app)
+
 api_bp = Blueprint('api', __name__)
 api = Api(api_bp)
 
