@@ -20,9 +20,17 @@ api = Api(api_bp)
 
 class GetGamesList(Resource):
     def get(self):
-        gamesList = db.gamesList
+        gamesList = db.player_games
         games = gamesList.find({})
-        return json_util.dumps(games)
+        print(games)
+        gamesList1 = []
+        for g in games :
+            
+            gamesList1.append({'id': str(g["_id"]), 'title': g["title"], 'description': g["description"], 'completion': g["completion"], 'levels': g["levels"]})
+        
+        
+        
+        return gamesList1
 
 
 class GetAndPostGames(Resource):
@@ -39,9 +47,10 @@ class GetAndPostGames(Resource):
         args = request.args
         id = args['id']
         games = db.player_games
-        game = [i for i in games.find(
+        
+        game = [g for g in games.find(
             {"_id": ObjectId(id)})]
-        return str(game)
+        return {'id': str(game[0]["_id"]), 'title': game[0]["title"], 'description': game[0]["description"], 'completion': game[0]["completion"], 'levels': game[0]["levels"]}
 
 class GetAndAddUsers(Resource):
     def post(self):
