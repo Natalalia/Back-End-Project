@@ -49,8 +49,8 @@ class GetAndAddUsers(Resource):
         usersList = db.usersList
         users = db.users
         user_id = users.insert(json_data).inserted_id
-        usersList.insert({'id': user_id, 'title': json_data['title']})
-        return json_util.dumps({'user_id': user_id})
+        usersList.insert({'game_id': user_id, 'title': json_data['title']})
+        return {'user_id':json_util.dumps(user_id)}
 
     def get(self):
         args = request.args
@@ -61,8 +61,8 @@ class GetAndAddUsers(Resource):
 
 
 
-api.add_resource(GetAndAddUsers, '/users')
 
+api.add_resource(GetAndAddUsers, '/users')
 api.add_resource(GetAndPostGames, '/games')
 api.add_resource(GetGamesList, '/gameslist')
 app.register_blueprint(api_bp)
