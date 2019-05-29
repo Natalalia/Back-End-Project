@@ -41,3 +41,15 @@ python3 index.py
 ```
 sudo service mongod start
 ```
+
+# Install pip
+
+```
+sudo apt install python3-pip
+```
+
+# Install pipenv
+
+```
+sudo pip3 install pipenv
+```

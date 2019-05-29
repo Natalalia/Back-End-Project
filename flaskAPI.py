@@ -31,9 +31,9 @@ class GetAndPostGames(Resource):
         gamesList = db.gamesList
         games = db.player_games
         game_id = games.insert_one(json_data).inserted_id
-        gamesList.insert({"id": game_id,
+        gamesList.insert({"id": json_util.dumps(game_id),
                           "title": json_data["title"]})
-        return json_util.dumps({"game_id": game_id})
+        return {"game_id": str(game_id)}
 
     def get(self):
         args = request.args
@@ -41,7 +41,7 @@ class GetAndPostGames(Resource):
         games = db.player_games
         game = [i for i in games.find(
             {"_id": ObjectId(id)})]
-        return json_util.dumps(game)
+        return str(game)
 
 class GetAndAddUsers(Resource):
     def post(self):
