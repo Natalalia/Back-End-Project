@@ -41,7 +41,12 @@ class GetAndPostGames(Resource):
         game_id = games.insert_one(json_data).inserted_id
         gamesList.insert({"id": json_util.dumps(game_id),
                           "title": json_data["title"]})
+        leaderBoard = db.leaderboards
+        leaderBoard.insert({"game_id": str(game_id),"leaderboard":[]})                  
         return {"game_id": str(game_id)}
+
+        
+        
 
     def get(self):
         args = request.args
@@ -67,6 +72,10 @@ class GetAndAddUsers(Resource):
         users = db.users
         user = [i for i in users.find({'_id': ObjectId(id)})]
         return json_util.dumps(user)
+
+
+class PostLeaderBoard(Resource):
+    def post(self):
 
 
 
