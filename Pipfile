@@ -14,8 +14,9 @@ pymongo = "*"
 gunicorn = "*"
 flask = "*"
 dnspython = "*"
-
 flask-cors = "*"
+pytest = "*"
+assertpy = "*"
 
 [requires]
 python_version = "3.6"
