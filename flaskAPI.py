@@ -10,7 +10,6 @@ client = pymongo.MongoClient(
 db = client.test
 
 
-
 db = client.games
 app = Flask(__name__)
 CORS(app)
@@ -24,12 +23,11 @@ class GetGamesList(Resource):
         games = gamesList.find({})
         print(games)
         gamesList1 = []
-        for g in games :
-            
-            gamesList1.append({'id': str(g["_id"]), 'title': g["title"], 'description': g["description"], 'completion': g["completion"], 'levels': g["levels"]})
-        
-        
-        
+        for g in games:
+
+            gamesList1.append({'id': str(g["_id"]), 'title': g["title"],
+                               'description': g["description"], 'completion': g["completion"], 'levels': g["levels"]})
+
         return gamesList1
 
 
@@ -42,20 +40,18 @@ class GetAndPostGames(Resource):
         gamesList.insert({"id": json_util.dumps(game_id),
                           "title": json_data["title"]})
         leaderBoard = db.leaderboards
-        leaderBoard.insert({"game_id": str(game_id),"leaderboard":[]})                  
+        leaderBoard.insert({"game_id": str(game_id), "leaderboard": []})
         return {"game_id": str(game_id)}
-
-        
-        
 
     def get(self):
         args = request.args
         id = args['id']
         games = db.player_games
-        
+
         game = [g for g in games.find(
             {"_id": ObjectId(id)})]
         return {'id': str(game[0]["_id"]), 'title': game[0]["title"], 'description': game[0]["description"], 'completion': game[0]["completion"], 'levels': game[0]["levels"]}
+
 
 class GetAndAddUsers(Resource):
     def post(self):
@@ -64,7 +60,7 @@ class GetAndAddUsers(Resource):
         users = db.users
         user_id = users.insert(json_data).inserted_id
         usersList.insert({'game_id': user_id, 'title': json_data['title']})
-        return {'user_id':json_util.dumps(user_id)}
+        return {'user_id': json_util.dumps(user_id)}
 
     def get(self):
         args = request.args
@@ -73,23 +69,24 @@ class GetAndAddUsers(Resource):
         user = [i for i in users.find({'_id': ObjectId(id)})]
         return json_util.dumps(user)
 
+
 class LeaderBoard(Resource):
     def get(self):
         args = request.args
         leaderboards = db.leaderboards
-        leaderboard = [l for l in leaderboards.find({"game_id":args['game_id']})]
-        return {"leaderBoard":leaderboard[0]["leaderboard"]}
+        leaderboard = [l for l in leaderboards.find(
+            {"game_id": args['game_id']})]
+        return {"leaderBoard": leaderboard[0]["leaderboard"]}
+
     def patch(self):
         json_data = request.get_json(force=True)
         game_id = json_data["game_id"]
         score = json_data["score"]
         username = json_data["username"]
         leaderboards = db.leaderboards
-        leaderboards.update({"game_id":game_id},{"$push":{"leaderboard":{"score":score,"username":username}}})
+        leaderboards.update({"game_id": game_id}, {
+                            "$push": {"leaderboard": {"score": score, "username": username}}})
         return "ok"
-
-
-
 
 
 api.add_resource(LeaderBoard, '/leaderboards')
