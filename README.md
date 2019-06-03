@@ -76,6 +76,26 @@ returns a game object with the following format
 																																																												"mainclue":"just write hello",
 																																																												"clue2":"nothing",
 																																																												"clue3":"nothing again",
-																																																												"wintext":"you have won this level","windata":"hello"}]}
-
+																																																												"wintext":"you have won this level","windata":"hello"}]
 ```
+
+### POST
+
+/games
+
+post a game in the previous format , retuns the new game id
+
+##/leaderboards
+
+### GET
+
+returns a leaderboard object in the following format
+
+{game_id,
+levels:[]}
+
+### PATCH
+
+accepts a body of {game_id:,
+score:123,
+username:}
