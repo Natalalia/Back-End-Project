@@ -52,4 +52,30 @@ sudo apt install python3-pip
 
 ```
 sudo pip3 install pipenv
+
+
+```
+
+# Available endpoints
+
+## /games
+
+### GET
+
+/games?id=ndjksahdsauu38hjds
+
+returns a game object with the following format
+
+```js
+{"title":"tonys test game",
+"description":"this is a test game to seed the database","completion":"well done you have completed the game","levels":[{"wincondition":"text",
+																																																												"mainclue":"just write hello",
+																																																												"clue2":"nothing",
+																																																												"clue3":"nothing again",
+																																																												"wintext":"you have won this level","windata":"hello"},{"wincondition":"text",
+																																																												"mainclue":"just write hello",
+																																																												"clue2":"nothing",
+																																																												"clue3":"nothing again",
+																																																												"wintext":"you have won this level","windata":"hello"}]}
+
 ```

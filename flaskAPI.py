@@ -73,13 +73,26 @@ class GetAndAddUsers(Resource):
         user = [i for i in users.find({'_id': ObjectId(id)})]
         return json_util.dumps(user)
 
+class LeaderBoard(Resource):
+    def get(self):
+        args = request.args
+        leaderboards = db.leaderboards
+        leaderboard = [l for l in leaderboards.find({"game_id":args['game_id']})]
+        return {"leaderBoard":leaderboard[0]["leaderboard"]}
+    def patch(self):
+        json_data = request.get_json(force=True)
+        game_id = json_data["game_id"]
+        score = json_data["score"]
+        username = json_data["username"]
+        leaderboards = db.leaderboards
+        leaderboards.update({"game_id":game_id},{"$push":{"leaderboard":{"score":score,"username":username}}})
+        return "ok"
 
-class PostLeaderBoard(Resource):
-    def post(self):
 
 
 
 
+api.add_resource(LeaderBoard, '/leaderboards')
 api.add_resource(GetAndAddUsers, '/users')
 api.add_resource(GetAndPostGames, '/games')
 api.add_resource(GetGamesList, '/gameslist')
