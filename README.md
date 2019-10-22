@@ -1,5 +1,11 @@
 # Back-End-Project
 
+## Overview
+
+This is the Back End of the final project. 
+
+Front End Repo: https://github.com/Natalalia/Front-End-Project
+
 ## Set up
 
 Create virtual environment:
@@ -14,7 +20,7 @@ Activate virtual environment:
 source nameofrunningfile/bin/activate
 ```
 
-## Install dependencies
+### Install dependencies
 
 ```
 pip install Flask
@@ -30,25 +36,25 @@ pip install mongoengine
 
 If requirements.txt already created just need to run `pip install -r requirements.txt` and all dependencies indicated in the file will be installed.
 
-## Run the server
+### Run the server
 
 ```
 python3 index.py
 ```
 
-## Run mongoDB
+### Run mongoDB
 
 ```
 sudo service mongod start
 ```
 
-# Install pip
+### Install pip
 
 ```
 sudo apt install python3-pip
 ```
 
-# Install pipenv
+### Install pipenv
 
 ```
 sudo pip3 install pipenv
@@ -56,11 +62,11 @@ sudo pip3 install pipenv
 
 ```
 
-# Available endpoints
+## Available endpoints
 
-## /games
+### /games
 
-### GET
+#### GET
 
 /games?id=ndjksahdsauu38hjds
 
@@ -79,7 +85,7 @@ returns a game object with the following format
 																																																												"wintext":"you have won this level","windata":"hello"}]
 ```
 
-### POST
+#### POST
 
 /games
 
@@ -87,15 +93,23 @@ post a game in the previous format , retuns the new game id
 
 ##/leaderboards
 
-### GET
+#### GET
 
 returns a leaderboard object in the following format
 
 {game_id,
 levels:[]}
 
-### PATCH
+#### PATCH
 
 accepts a body of {game_id:,
 score:123,
 username:}
+
+## Contributors
+*Authors*:
+ - Kyle https://github.com/kyle974
+ - Natalia https://github.com/Natalalia
+ - Rob Clegg https://GitHub.com/Roberto198
+ - Sam Wood https://github.com/sam90423
+ - Tony Morris https://github.com/TonyDMorris
