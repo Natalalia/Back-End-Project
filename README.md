@@ -4,7 +4,7 @@
 
 This is the Back End of the final project. 
 
-Front End Repo: https://github.com/Natalalia/Front-End-Project
+Front End Repo: https://github.com/Natalalia/Plunder-Front-End
 
 ## Set up
 
